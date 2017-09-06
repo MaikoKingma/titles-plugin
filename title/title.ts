@@ -1,8 +1,8 @@
-import { BasicTitle } from "../basic-title";
+import { BasicTitle } from "./basic-title";
 
 export class Title implements BasicTitle {
 
-    constructor(public name: string, public minRange: number, public maxRange: number) {
+    constructor(public id: number, public name: string, public minRange: number, public maxRange: number) {
         if (this.minRange % 1 !== 0) {
             throw new RangeError("The minRange should be a whole number!");
         }
@@ -15,7 +15,7 @@ export class Title implements BasicTitle {
      * Returns a new Title parsed from a literal.
      */
     public static fromJSON(literal: BasicTitle):Title {
-        return new Title(literal.name, literal.minRange, literal.maxRange)
+        return new Title(literal.id, literal.name, literal.minRange, literal.maxRange);
     }
 
     /**
@@ -23,7 +23,7 @@ export class Title implements BasicTitle {
      */
     public toJSON(): BasicTitle {
         return {
-            name: this.id, minRange: this.minRange, maxRange: this.maxRange;
+            id: this.id, name: this.name, minRange: this.minRange, maxRange: this.maxRange
         }
     }
 }
