@@ -1,4 +1,4 @@
-export class Commands {
+export class CommandManager {
 
     /**
      * Adds a title to the plugin.
