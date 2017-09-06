@@ -6,19 +6,11 @@ import { LeaderboardResetPluginEventArguments } from "../../src/plugin-host/plug
 import { TimerTickPluginEventArguments } from "../../src/plugin-host/plugin-events/event-arguments/timer-tick-plugin-event-arguments";
 import { CommandManager } from "./commandManager";
 
-/**
- * Example of the simplest DankTimesBot
- * plugin. Can be used as a template to
- * build new plugins.
- */
 export class Plugin extends AbstractPlugin
 {
-  /**
-   * A plugin should call its base constructor to
-   * provide it with an identifier, a version
-   * and some optional data.
-   */
-  constructor(private readonly cmdManager: CommandManager)
+  private readonly cmdManager: CommandManager = new CommandManager();
+
+  constructor()
   {
     super("titles-plugin", "1.0.0", {});
 
@@ -27,22 +19,22 @@ export class Plugin extends AbstractPlugin
       //Check if command /add_title is executed
       var command = "/add_title";
       if (_data.Message.length >= command.length && _data.Message.substr(0, command.length) == command) {
-        return cmdManager.addTitle(_data.Message);
+        return this.cmdManager.addTitle(_data.Message);
       }
       //Check if command /modify_title is executed
       command = "/modify_title";
       if (_data.Message.length >= command.length && _data.Message.substr(0, command.length) == command) {
-        return cmdManager.modifyTitle(_data.Message);
+        return this.cmdManager.modifyTitle(_data.Message);
       }
       //Check if command /titles is executed
       command = "/titles";
       if (_data.Message.length >= command.length && _data.Message.substr(0, command.length) == command) {
-        return cmdManager.getTitles();
+        return this.cmdManager.getTitles();
       }
       //Check if command /remove_title is executed
       command = "/remove_title";
       if (_data.Message.length >= command.length && _data.Message.substr(0, command.length) == command) {
-        return cmdManager.removeTitle(_data.Message);
+        return this.cmdManager.removeTitle(_data.Message);
       }
     });
 
