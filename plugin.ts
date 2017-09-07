@@ -21,40 +21,24 @@ export class Plugin extends AbstractPlugin
       if (_data.Message.length >= command.length && _data.Message.substr(0, command.length) == command) {
         return this.cmdManager.addTitle(_data.Message);
       }
+      
       //Check if command /modify_title is executed
       command = "/modify_title";
       if (_data.Message.length >= command.length && _data.Message.substr(0, command.length) == command) {
         return this.cmdManager.modifyTitle(_data.Message);
       }
+
       //Check if command /titles is executed
       command = "/titles";
       if (_data.Message.length >= command.length && _data.Message.substr(0, command.length) == command) {
         return this.cmdManager.getTitles();
       }
+
       //Check if command /remove_title is executed
       command = "/remove_title";
       if (_data.Message.length >= command.length && _data.Message.substr(0, command.length) == command) {
         return this.cmdManager.removeTitle(_data.Message);
       }
     });
-
-    // this.subscribeToPluginEvent(PLUGIN_EVENT.PLUGIN_EVENT_USER_CHANGED_SCORE, (_data: UserScoreChangedPluginEventArguments) =>
-    // {
-    //   return `A player changed score! Player: ${_data.User.name}, change: ${_data.ChangeInScore}`;
-    // });
-
-    // this.subscribeToPluginEvent(PLUGIN_EVENT.PLUGIN_EVENT_POST_MESSAGE, (_data: PrePostMessagePluginEventArguments) =>
-    // {
-    //   return `Example of a Post Message Event`;
-    // });
-
-    // this.subscribeToPluginEvent(PLUGIN_EVENT.PLUGIN_EVENT_LEADERBOARD_RESET, (_data: LeaderboardResetPluginEventArguments) =>
-    // {
-    //   return `The leaderboard was reset for chat: ${_data.Chat.id}`
-    // });
-    
-    // this.subscribeToPluginEvent(PLUGIN_EVENT.PLUGIN_EVENT_TIMER_TICK, (_data: TimerTickPluginEventArguments) => {
-    //   return `Example of a timer tick event with saved Plugin State! Here's your number: ${this.Data.TestNumber++}`;
-    // });
   }
 } 

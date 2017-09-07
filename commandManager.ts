@@ -8,7 +8,7 @@ export class CommandManager {
         // Split string and ensure it contains at least 4 items.
         const split = message.split(" ");
         if (split.length < 4) {
-            return "Not enough arguments! Format: /add_Title [minRange] [maxRange] [name]";
+            return "Not enough arguments! Format: /add_title [minRange] [maxRange] [name]";
         }
         
         // Identify and verify arguments.
@@ -37,7 +37,7 @@ export class CommandManager {
         // Split string and ensure it contains at least 5 items.
         const split = message.split(" ");
         if (split.length < 5) {
-            return "/modify_title [id] [minRange] [maxRange] [newName]";
+            return "Not enough arguments! Format: /modify_title [id] [minRange] [maxRange] [name]";
         }
         
         // Identify and verify arguments.
@@ -73,10 +73,10 @@ export class CommandManager {
      */
     public removeTitle(message: string): string {
         
-        // Split string and ensure it contains at least 1 item.
+        // Split string and ensure it contains at least 2 items.
         const split = message.split(" ");
-        if (split.length < 5) {
-            return "/remove_title [id]";
+        if (split.length < 2) {
+            return "Not enough arguments! Format: /remove_title [id]";
         }
 
         // Identify and verify arguments.
