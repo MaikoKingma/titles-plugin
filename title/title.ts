@@ -26,4 +26,23 @@ export class Title implements BasicTitle {
             id: this.id, name: this.name, minRange: this.minRange, maxRange: this.maxRange
         }
     }
+    
+    /**
+     * Compares two titles using their minRange and maxRange.
+     * Used for sorting collections.
+     */
+    public static compare(a: Title, b: Title) {
+        if (a.minRange < b.minRange) {
+            return -1;
+        }
+        else if (a.minRange > b.minRange) {
+            return 1;
+        }
+        else if (a.maxRange < b.maxRange) {
+            return -1;
+        }
+        else if (a.maxRange > b.maxRange) {
+            return -1;
+        }
+    }
 }
