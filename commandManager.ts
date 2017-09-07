@@ -3,7 +3,7 @@ export class CommandManager {
     /**
      * Adds a title to the plugin.
      */
-    public addTitle(message: string): string {
+    public addTitle(message: string, chatID: number): string {
         
         // Split string and ensure it contains at least 4 items.
         const split = message.split(" ");
@@ -32,7 +32,7 @@ export class CommandManager {
     /**
      * Modifys a title to the plugin.
      */
-    public modifyTitle(message: string): string {
+    public modifyTitle(message: string, chatID: number): string {
         
         // Split string and ensure it contains at least 5 items.
         const split = message.split(" ");
@@ -61,7 +61,7 @@ export class CommandManager {
     /**
      * Returns all titles
      */
-    public getTitles(): string {
+    public getTitles(chatID: number): string {
         
         //ToDo implement getTitles
 
@@ -71,7 +71,7 @@ export class CommandManager {
     /**
      * Removes a title
      */
-    public removeTitle(message: string): string {
+    public removeTitle(message: string, chatID: number): string {
         
         // Split string and ensure it contains at least 2 items.
         const split = message.split(" ");
