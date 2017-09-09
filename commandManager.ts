@@ -20,7 +20,7 @@ export class CommandManager {
         // Identify and verify arguments.
         const minRange = Number(split[1]);
         const maxRange = Number(split[2]);
-        const name = split.slice(3).join + "";
+        const name = split.slice(3).join();
 
         if (isNaN(minRange)) {
             return "The minRange must be a number!";
@@ -54,7 +54,7 @@ export class CommandManager {
         const id = Number(split[1]);
         const minRange = Number(split[2]);
         const maxRange = Number(split[3]);
-        const name = split.slice(4).join + "";
+        const name = split.slice(4).join();
 
         if (isNaN(minRange)) {
             return "The minRange must be a number!";
