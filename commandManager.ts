@@ -108,7 +108,7 @@ export class CommandManager {
         
         //Remove title from the specified chat
         if (this.chatRegistry.getOrCreateChat(chatID).removeTitle(id)) {
-            "Title removed!";
+            return "Title removed!";
         }
         
         return "Id did not match with an existing title.";
