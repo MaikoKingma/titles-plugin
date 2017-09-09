@@ -50,6 +50,30 @@ export class Title implements BasicTitle {
      * Returns a string version of this title
      */
     public toString(): string {
-        return "${this.id} ${this.minRange} ${this.maxRange} ${this.name}";
+        //Format depending on minRange value
+        var minRangeString = this.minRange + "    ";
+        if (this.minRange < 10 && this.minRange > -10) {
+            minRangeString += "        ";
+        }
+        else if (this.minRange < 100 && this.minRange > -100) {
+            minRangeString += "      ";
+        }
+        else if (this.minRange < 1000 && this.minRange > -1000) {
+            minRangeString += "    ";
+        }
+
+        //Format depending on maxRange value
+        var maxRangeString = this.maxRange + "    ";
+        if (this.maxRange < 10 && this.maxRange > -10) {
+            maxRangeString += "     ";
+        }
+        else if (this.maxRange < 100 && this.maxRange > -100) {
+            maxRangeString += "   ";
+        }
+        else if (this.maxRange < 1000 && this.maxRange > -1000) {
+            maxRangeString += "  ";
+        }
+
+        return this.id + "    " + minRangeString + maxRangeString + this.name;
     }
 }
