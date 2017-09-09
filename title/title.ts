@@ -45,4 +45,11 @@ export class Title implements BasicTitle {
             return -1;
         }
     }
+
+    /**
+     * Returns a string version of this title
+     */
+    public toString(): string {
+        return "${this.id} ${this.minRange} ${this.maxRange} ${this.name}";
+    }
 }
