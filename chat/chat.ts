@@ -3,14 +3,13 @@ import { Title } from "../title/title";
 
 export class Chat implements BasicChat {
 
-    constructor(public id: number, public readonly titles: Title[]) {
-        
-    }
+    constructor(public id: number, public readonly titles: Title[]) { }
     
     /**
      * Adds a new title to this chat if it doesn't conflict with other title ranges.
      */
-    public addTitle(title: Title): boolean {
+    public addTitle(name: string, minRange: number, maxRange: number): boolean {
+        const title = new Title(this.getNextTitleId(), name, minRange, maxRange);
         if (!this.checkOverlap(title)) {
             return false;
         }
@@ -48,6 +47,20 @@ export class Chat implements BasicChat {
         this.titles.splice(index, 1);
 
         return true;
+    }
+
+    /**
+     * Finds the next id for titles;
+     */
+    private getNextTitleId(): number {
+        var maxId = 0;
+        this.titles.map(function(title) {
+            if (title.id > maxId) {
+                maxId = title.id;
+            }
+        });
+        
+        return maxId + 1;
     }
 
     /**
