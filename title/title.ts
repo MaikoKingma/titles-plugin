@@ -33,16 +33,19 @@ export class Title implements BasicTitle {
      */
     public static compare(a: Title, b: Title) {
         if (a.minRange < b.minRange) {
-            return -1;
-        }
-        else if (a.minRange > b.minRange) {
             return 1;
         }
-        else if (a.maxRange < b.maxRange) {
+        else if (a.minRange > b.minRange) {
             return -1;
+        }
+        else if (a.maxRange < b.maxRange) {
+            return 1;
         }
         else if (a.maxRange > b.maxRange) {
             return -1;
+        }
+        else {
+            return 0;
         }
     }
 
