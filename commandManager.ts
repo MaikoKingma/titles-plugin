@@ -10,7 +10,7 @@ export class CommandManager {
      * Adds a title to the plugin.
      */
     public addTitle(message: string, chatID: number): string {
-        
+                
         // Split string and ensure it contains at least 4 items.
         const split = message.split(" ");
         if (split.length < 4) {

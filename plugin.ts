@@ -19,25 +19,25 @@ export class Plugin extends AbstractPlugin
       //Check if command /add_title is executed
       var command = "/add_title";
       if (_data.Message.length >= command.length && _data.Message.substr(0, command.length) == command) {
-        return this.cmdManager.addTitle(_data.Message);
+        return this.cmdManager.addTitle(_data.Message, 0);
       }
       
       //Check if command /modify_title is executed
       command = "/modify_title";
       if (_data.Message.length >= command.length && _data.Message.substr(0, command.length) == command) {
-        return this.cmdManager.modifyTitle(_data.Message);
+        return this.cmdManager.modifyTitle(_data.Message, 0);
       }
 
       //Check if command /titles is executed
       command = "/titles";
       if (_data.Message.length >= command.length && _data.Message.substr(0, command.length) == command) {
-        return this.cmdManager.getTitles();
+        return this.cmdManager.getTitles(0);
       }
 
       //Check if command /remove_title is executed
       command = "/remove_title";
       if (_data.Message.length >= command.length && _data.Message.substr(0, command.length) == command) {
-        return this.cmdManager.removeTitle(_data.Message);
+        return this.cmdManager.removeTitle(_data.Message, 0);
       }
     });
   }
