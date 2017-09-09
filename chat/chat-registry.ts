@@ -29,5 +29,7 @@ export class ChatRegistry {
             new Title(4, "Thijs'", -9999, -1)
         ];
         const chat = new Chat(id, titles);
+        this.chats.set(id, chat);
+        return chat;
     }
 }
