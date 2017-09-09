@@ -28,6 +28,7 @@ export class Chat implements BasicChat {
             return false;
         }
 
+        //Set the old title with new values
         this.titles[index].minRange = title.minRange;
         this.titles[index].maxRange = title.maxRange;
         this.titles[index].name = title.name;
@@ -44,6 +45,7 @@ export class Chat implements BasicChat {
             return false;
         }
 
+        //Remove the title from the array
         this.titles.splice(index, 1);
 
         return true;
