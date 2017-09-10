@@ -19,9 +19,7 @@ This plugin for the [DankTimesBot](https://github.com/Agadar/DankTimesBot) adds 
 | 9 | User9     |575 |      |   |
 
 ## Commands
-Note: Italic commands aren't implemented yet.
-
-* */titles*  
+* **/titles**  
 Returns all titles currently in your chat.  
 The result corresponding with the leaderboard above would look like this:
 
@@ -33,7 +31,7 @@ The result corresponding with the leaderboard above would look like this:
 | 3  | 0        | 999      | Normies   |
 
 
-* */add_Title [minRange] [maxRange] [name]*  
+* **/add_Title [minRange] [maxRange] [name]**  
 Adds a new title to your chat.  
 Example: `/add_title 0 100 normie`  
 Arguments:  
@@ -41,7 +39,7 @@ Arguments:
   * **[maxRange]** Users with a score lower than this number get this title.  
   * **[name]** Name of the title.  
 
-* */modify_title [id] [minRange] [maxRange] [name]*  
+* **/modify_title [id] [minRange] [maxRange] [name]**  
 Modifies an existing title.  
 Example: `/modify_title 0 0 1000 normie`  
 Arguments:  
@@ -50,7 +48,7 @@ Arguments:
   * **[maxRange]** the new maxRange of the title in question.  
   * **[name]** the new name of the title in question.  
 
-* */remove_title [id]*  
+* **/remove_title [id]**  
 Modifies an existing title.  
 Example: `/remove_title 0`  
 Arguments:  
