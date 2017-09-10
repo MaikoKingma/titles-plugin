@@ -53,3 +53,13 @@ Modifies an existing title.
 Example: `/remove_title 0`  
 Arguments:  
   * **[id]** ID of the title to be removed.  
+
+* **/set_titles**
+Removes all existing titles and replaces them with new ones.  
+This commands uses the same arguments as `/add_title` but on multiple lines.    
+Example:  
+```
+/set_titles 0 99 title1
+100 199 title2
+200 299 title3
+```

@@ -113,4 +113,35 @@ export class CommandManager {
         
         return "Id did not match with an existing title.";
     }
+
+    /**
+     * Overrides all titles of the given chat
+     */
+    public setTitles(message: string, chatID: number): string {
+
+        //Check foreach line if its correctly formated
+        const lines = message.substr(12).split("\n");
+        var success = true;
+        for (let line of lines) {
+            const split = line.split(" ");
+            if (split.length < 3 || isNaN(Number(split[0])) || isNaN(Number(split[1]))) {
+                success = false;
+                break;
+            }
+        }
+        if (!success) {
+            return "Your message wasn't properly formated."
+        }
+
+        const chat = this.chatRegistry.getOrCreateChat(chatID);
+        //Remove all current titles
+        chat.titles.length = 0;
+        //Insert all new titles
+        for (let line of lines) {
+            const split = line.split(" ");
+            chat.addTitle(split.slice(2).join(), Number(split[0]), Number(split[1]));
+        }
+
+        return "All titles have been added.";
+    }
 }

@@ -39,6 +39,12 @@ export class Plugin extends AbstractPlugin
       if (_data.Message.length >= command.length && _data.Message.substr(0, command.length) == command) {
         return this.cmdManager.removeTitle(_data.Message, _data.HostChat.id);
       }
+      
+      //Check if command /remove_title is executed
+      command = "/set_titles";
+      if (_data.Message.length >= command.length && _data.Message.substr(0, command.length) == command) {
+        return this.cmdManager.setTitles(_data.Message, _data.HostChat.id);
+      }
 
       return "";
     });
