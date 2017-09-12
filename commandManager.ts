@@ -1,6 +1,6 @@
 import { ChatRegistry } from "./chat/chat-registry";
-import { Chat } from "./chat/chat";
 import { Title } from "./title/title";
+import { Chat } from "../../src/chat/chat";
 
 export class CommandManager {
 
@@ -9,7 +9,7 @@ export class CommandManager {
     /**
      * Adds a title to the plugin.
      */
-    public addTitle(message: string, chatID: number): string {
+    public addTitle(message: string, chat: Chat): string {
                 
         // Split string and ensure it contains at least 4 items.
         const split = message.split(" ");
@@ -30,8 +30,8 @@ export class CommandManager {
         }
 
         //Add the new title to the given chat
-        const chat =  this.chatRegistry.getOrCreateChat(chatID);
-        if (chat.addTitle(name, minRange, maxRange)) {
+        const chatObject =  this.chatRegistry.getOrCreateChat(chat);
+        if (chatObject.addTitle(name, minRange, maxRange)) {
             return "Added the new title!";
         }
 
@@ -42,7 +42,7 @@ export class CommandManager {
     /**
      * Modifys a title to the plugin.
      */
-    public modifyTitle(message: string, chatID: number): string {
+    public modifyTitle(message: string, chat: Chat): string {
         
         // Split string and ensure it contains at least 5 items.
         const split = message.split(" ");
@@ -64,9 +64,9 @@ export class CommandManager {
         }
         
         //Modify the title in the given chat
-        const chat =  this.chatRegistry.getOrCreateChat(chatID);
+        const chatObject =  this.chatRegistry.getOrCreateChat(chat);
         const title = new Title(id, name, minRange, maxRange);
-        if (chat.modifyTitle(title)) {
+        if (chatObject.modifyTitle(title)) {
             return "Modified the title!";
         }
 
@@ -76,9 +76,9 @@ export class CommandManager {
     /**
      * Returns all titles
      */
-    public getTitles(chatID: number): string {
+    public getTitles(chat: Chat): string {
         //Get titles
-        const titles = this.chatRegistry.getOrCreateChat(chatID).titles;
+        const titles = this.chatRegistry.getOrCreateChat(chat).titles;
         
         //Create message with all titles
         let message = "<b>--- TITLES ---</b>\n\n";
@@ -92,7 +92,7 @@ export class CommandManager {
     /**
      * Removes a title
      */
-    public removeTitle(message: string, chatID: number): string {
+    public removeTitle(message: string, chat: Chat): string {
         
         // Split string and ensure it contains at least 2 items.
         const split = message.split(" ");
@@ -107,7 +107,7 @@ export class CommandManager {
         }
         
         //Remove title from the specified chat
-        if (this.chatRegistry.getOrCreateChat(chatID).removeTitle(id)) {
+        if (this.chatRegistry.getOrCreateChat(chat).removeTitle(id)) {
             return "Title removed!";
         }
         
@@ -117,7 +117,7 @@ export class CommandManager {
     /**
      * Overrides all titles of the given chat
      */
-    public setTitles(message: string, chatID: number): string {
+    public setTitles(message: string, chat: Chat): string {
 
         //Check foreach line if its correctly formated
         const lines = message.substr(12).split("\n");
@@ -133,15 +133,15 @@ export class CommandManager {
             return "Your message wasn't properly formated."
         }
 
-        const chat = this.chatRegistry.getOrCreateChat(chatID);
+        const chatObject = this.chatRegistry.getOrCreateChat(chat);
         //Remove all current titles
-        chat.titles.length = 0;
+        chatObject.titles.length = 0;
         //Insert all new titles
         for (let line of lines) {
             const split = line.split(" ");
-            chat.addTitle(split.slice(2).join(), Number(split[0]), Number(split[1]));
+            chatObject.addTitle(split.slice(2).join(), Number(split[0]), Number(split[1]));
         }
 
-        return "All titles have been added.";
+        return "All titles have been added!";
     }
 }

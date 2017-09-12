@@ -1,9 +1,9 @@
-import { BasicChat } from "./basic-chat";
 import { Title } from "../title/title";
+import { Chat } from "../../../src/chat/chat";
 
-export class Chat implements BasicChat {
+export class ChatObject {
 
-    constructor(public id: number, public readonly titles: Title[]) { }
+    constructor(public chat: Chat, public readonly titles: Title[]) { }
     
     /**
      * Adds a new title to this chat if it doesn't conflict with other title ranges.
@@ -39,8 +39,8 @@ export class Chat implements BasicChat {
     /**
      * Removes an title from this chat.
      */
-    public removeTitle(id: number): boolean {
-        var index = this.titles.findIndex(oldTitle => oldTitle.id == id);
+    public removeTitle(titleId: number): boolean {
+        var index = this.titles.findIndex(oldTitle => oldTitle.id == titleId);
         if (index == -1) {
             return false;
         }
@@ -83,16 +83,16 @@ export class Chat implements BasicChat {
     /**
      * Returns a new Chat parsed from a literal.
      */
-    public static fromJSON(literal: BasicChat):Chat {
-        return new Chat(literal.id, literal.titles);
-    }
+    // public static fromJSON(literal: BasicChat):ChatObject {
+    //     return new ChatObject(literal.id, literal.titles);
+    // }
 
-    /**
-     * Used by JSON.stringify. Returns a literal representation of this.
-     */
-    public toJSON(): BasicChat {
-        return {
-            id: this.id, titles: this.titles
-        }
-    }
+    // /**
+    //  * Used by JSON.stringify. Returns a literal representation of this.
+    //  */
+    // public toJSON(): BasicChat {
+    //     return {
+    //         id: this.id, titles: this.titles
+    //     }
+    // }
 }
