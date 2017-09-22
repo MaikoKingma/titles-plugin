@@ -28,11 +28,8 @@ export class ChatObject {
     /**
      * Adds a new title to this chat if it doesn't conflict with other title ranges.
      */
-    public addTitle(name: string, minRange: number, maxRange: number): boolean {
-        const title = new Title(this.getNextTitleId(), name, minRange, maxRange);
-        if (!this.checkOverlap(title)) {
-            return false;
-        }
+    public addTitle(name: string, maxRange: number): boolean {
+        const title = new Title(this.getNextTitleId(), name, maxRange);
         this.titles.push(title);
         this.titles.sort(Title.compare);
         return true;
@@ -44,12 +41,11 @@ export class ChatObject {
     public modifyTitle(title: Title): boolean {
         var index = this.titles.findIndex(oldTitle => oldTitle.id == title.id);
         
-        if (index == -1 || !this.checkOverlap(title)) {
+        if (index == -1) {
             return false;
         }
 
         //Set the old title with new values
-        this.titles[index].minRange = title.minRange;
         this.titles[index].maxRange = title.maxRange;
         this.titles[index].name = title.name;
         this.titles.sort(Title.compare);
@@ -86,21 +82,6 @@ export class ChatObject {
     }
 
     /**
-     * Checks if the newTitle overlaps with any exising titles in the chat.
-     */
-    private checkOverlap(newTitle: Title): boolean {
-        for (let title of this.titles) {
-            if (title.id == newTitle.id) {
-                continue;
-            }
-            if (newTitle.minRange <= title.maxRange && title.minRange <= newTitle.maxRange) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
      * Calculates on which lines of the leaderboard tiles should be writen.
      */
     private calculateLeaderboard(testTitles: Title[], testUsers: User[]) {
@@ -124,7 +105,7 @@ export class ChatObject {
         }
 
         for(let title of testTitles) {
-            lines.splice(title.line, 0, title.name + " " + title.maxRange + " " + title.minRange);
+            lines.splice(title.line, 0, title.name + " " + title.maxRange);
         }
         
         var leaderboard = "";

@@ -13,25 +13,20 @@ export class CommandManager {
                 
         // Split string and ensure it contains at least 4 items.
         const split = message.split(" ");
-        if (split.length < 4) {
-            return "Not enough arguments! Format: /add_title [minRange] [maxRange] [name]";
+        if (split.length < 3) {
+            return "Not enough arguments! Format: /add_title [maxRange] [name]";
         }
         
         // Identify and verify arguments.
-        const minRange = Number(split[1]);
-        const maxRange = Number(split[2]);
-        const name = split.slice(3).join();
-
-        if (isNaN(minRange)) {
-            return "The minRange must be a number!";
-        }
+        const maxRange = Number(split[1]);
+        const name = split.slice(2).join();
         if (isNaN(maxRange)) {
             return "The maxRange must be a number!";
         }
 
         //Add the new title to the given chat
         const chatObject =  this.chatRegistry.getOrCreateChat(chat);
-        if (chatObject.addTitle(name, minRange, maxRange)) {
+        if (chatObject.addTitle(name, maxRange)) {
             return "Added the new title!";
         }
 
@@ -46,26 +41,22 @@ export class CommandManager {
         
         // Split string and ensure it contains at least 5 items.
         const split = message.split(" ");
-        if (split.length < 5) {
-            return "Not enough arguments! Format: /modify_title [id] [minRange] [maxRange] [name]";
+        if (split.length < 4) {
+            return "Not enough arguments! Format: /modify_title [id] [maxRange] [name]";
         }
         
         // Identify and verify arguments.
         const id = Number(split[1]);
-        const minRange = Number(split[2]);
-        const maxRange = Number(split[3]);
+        const maxRange = Number(split[2]);
         const name = split.slice(4).join();
 
-        if (isNaN(minRange)) {
-            return "The minRange must be a number!";
-        }
         if (isNaN(maxRange)) {
             return "The maxRange must be a number!";
         }
         
         //Modify the title in the given chat
         const chatObject =  this.chatRegistry.getOrCreateChat(chat);
-        const title = new Title(id, name, minRange, maxRange);
+        const title = new Title(id, name, maxRange);
         if (chatObject.modifyTitle(title)) {
             return "Modified the title!";
         }
@@ -124,7 +115,7 @@ export class CommandManager {
         var success = true;
         for (let line of lines) {
             const split = line.split(" ");
-            if (split.length < 3 || isNaN(Number(split[0])) || isNaN(Number(split[1]))) {
+            if (split.length < 2 || isNaN(Number(split[0]))) {
                 success = false;
                 break;
             }
@@ -139,7 +130,7 @@ export class CommandManager {
         //Insert all new titles
         for (let line of lines) {
             const split = line.split(" ");
-            chatObject.addTitle(split.slice(2).join(), Number(split[0]), Number(split[1]));
+            chatObject.addTitle(split.slice(2).join(), Number(split[0]));
         }
 
         return "All titles have been added!";

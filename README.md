@@ -23,28 +23,26 @@ This plugin for the [DankTimesBot](https://github.com/Agadar/DankTimesBot) adds 
 Returns all titles currently in your chat.  
 The result corresponding with the leaderboard above would look like this:
 
-| ID | MinRange | MaxRange | Name      |
-|----|----------|----------|-----------|
-| 0  | 2500     | 9999     | Pepe's    |
-| 1  | 2000     | 2499     | Memers    |
-| 2  | 1000     | 1999     | Wholesome |
-| 3  | 0        | 999      | Normies   |
+| ID | MaxRange | Name      |
+|----|----------|-----------|
+| 0  | 9999     | Pepe's    |
+| 1  | 2499     | Memers    |
+| 2  | 1999     | Wholesome |
+| 3  | 999      | Normies   |
 
 
-* **/add_Title [minRange] [maxRange] [name]**  
+* **/add_Title [maxRange] [name]**  
 Adds a new title to your chat.  
-Example: `/add_title 0 100 normie`  
+Example: `/add_title 100 normie`  
 Arguments:  
-  * **[minRange]** Users with a score higher than this number get this title.  
   * **[maxRange]** Users with a score lower than this number get this title.  
   * **[name]** Name of the title.  
 
-* **/modify_title [id] [minRange] [maxRange] [name]**  
+* **/modify_title [id] [maxRange] [name]**  
 Modifies an existing title.  
-Example: `/modify_title 0 0 1000 normie`  
+Example: `/modify_title 0 1000 normie`  
 Arguments:  
   * **[id]** ID of the title to be modified.  
-  * **[minRange]** the new minRange of the title in question.  
   * **[maxRange]** the new maxRange of the title in question.  
   * **[name]** the new name of the title in question.  
 
@@ -59,7 +57,7 @@ Removes all existing titles and replaces them with new ones.
 This commands uses the same arguments as `/add_title` but on multiple lines.    
 Example:  
 ```
-/set_titles 0 99 title1
-100 199 title2
-200 299 title3
+/set_titles 99 title1
+199 title2
+299 title3
 ```

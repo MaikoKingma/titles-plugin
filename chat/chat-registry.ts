@@ -24,11 +24,11 @@ export class ChatRegistry {
 
         //else create a new chat with predefined titles
         let titles: Title[] = [
-            new Title(0, "Pepe's", 2500, 9999),
-            new Title(1, "Memers", 2000, 2499),
-            new Title(2, "Wholesome", 1000, 1999),
-            new Title(3, "Normies", 0, 999),
-            new Title(4, "Thijs'", -9999, -1)
+            new Title(0, "Thijs'", 0),
+            new Title(1, "Normies", 999),
+            new Title(2, "Wholesome", 1999),
+            new Title(3, "Memers", 2499),
+            new Title(4, "Pepe's", 9999)
         ];
         const chatObject = new ChatObject(chat, titles);
         this.chats.set(chat.id, chatObject);
