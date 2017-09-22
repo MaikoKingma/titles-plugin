@@ -2,7 +2,7 @@ import { BasicTitle } from "./basic-title";
 
 export class Title implements BasicTitle {
 
-    constructor(public id: number, public name: string, public minRange: number, public maxRange: number) {
+    constructor(public id: number, public name: string, public minRange: number, public maxRange: number, public line: number = null) {
         if (this.minRange % 1 !== 0) {
             throw new RangeError("The minRange should be a whole number!");
         }
